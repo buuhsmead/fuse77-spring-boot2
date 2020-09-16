@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+  <!-- Define a traditional camel context here -->
+  <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+    <route id="simple-route">
+      <from id="route-timer" uri="timer:foo?period=2000"/>
+      <transform id="route-transform">
+        <method ref="myTransformer"/>
+      </transform>
+      <log id="route-log" message=">>> ${body}"/>
+    </route>
+
+    <route id="simple-route-2">
+      <from id="route-timer-2" uri="timer:foo2?period=2000"/>
+      <transform id="route-transform-2">
+        <method ref="myTransformer"/>
+      </transform>
+      <log id="route-log-2" message=">>> ${body}"/>
+    </route>
+
+    <route id="simple-route-3">
+      <from id="route-timer-3" uri="timer:foo3?period=2000"/>
+      <transform id="route-transform-3">
+        <method ref="myTransformer"/>
+      </transform>
+      <log id="route-log-3" message=">>> ${body}"/>
+    </route>
+
+
+
+
+  </camelContext>
+
+</beans>
